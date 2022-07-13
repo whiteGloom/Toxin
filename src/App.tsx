@@ -5,7 +5,7 @@ import Checkbox from './widgets/checkbox';
 function App() {
   return (
     <div className="App">
-      <Checkbox/>
+      <Checkbox active={true} />
     </div>
   );
 }
