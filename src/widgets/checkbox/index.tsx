@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import {ReactComponent as Mark} from './mark.svg';
 
 export type Props = {
-  active: boolean,
-  disabled?: boolean,
+  active: boolean;
+  onClick: () => void;
+  className?: string;
 }
 
 const Wrapper = styled.div`
+  cursor: pointer;
   width: 20px;
   height: 20px;
   border-radius: 4px;
@@ -24,17 +26,24 @@ const Wrapper = styled.div`
 `;
 
 const StyledMark = styled(Mark)`
-  margin: 3px 0 0 3px;
-  width: 6px;
-  height: 8px
+  display: block;
+  margin: 4px 0 0 4px;
+  width: 10px;
+  height: 10px;
 `;
 
 const Checkbox: FC<Props> = (props: Props) => {
   const isActive = props.active;
 
+  const onClick = () => {
+    props.onClick();
+  };
+
   return (
-    <Wrapper className={`checkbox ${isActive ? '_active' : '_inactive'}`}>
-      <StyledMark/>
+    <Wrapper
+      onClick={onClick}
+      className={`checkbox ${isActive ? '_active' : '_inactive'} ${props.className}`}>
+      {isActive && <StyledMark/>}
     </Wrapper>
   );
 }
